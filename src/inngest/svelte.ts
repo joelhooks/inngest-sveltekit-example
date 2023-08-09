@@ -1,7 +1,4 @@
-import type { RequestHandler } from '@sveltejs/kit';
-import { getHeader, getMethod, getQuery, readBody, send, setHeaders, type H3Event } from 'h3';
 import { InngestCommHandler, type ServeHandler, headerKeys, queryKeys } from 'inngest';
-import type { SupportedFrameworkName } from 'inngest/types';
 
 const allProcessEnv = (): Record<string, string | undefined> => {
 	try {
@@ -23,12 +20,6 @@ const processEnv = (key: string): string | undefined => {
 
 export const name = 'sveltekit';
 
-/**
- * In Nuxt 3, serve and register any declared functions with Inngest, making
- * them available to be triggered by events.
- *
- * @public
- */
 export const serve: ServeHandler = (nameOrInngest, fns, opts) => {
 	const handler = new InngestCommHandler(
 		name,
